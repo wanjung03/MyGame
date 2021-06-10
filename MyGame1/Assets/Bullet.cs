@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
 
     public int Speed = 10;
@@ -16,6 +16,14 @@ public class bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.right * Time.deltaTime * Speed;
+        transform.position += Vector3.forward * Time.deltaTime * Speed;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Monster")
+            GameObject.Destroy(other.gameObject);
+
+        Debug.Log("Trigger");    
     }
 }
